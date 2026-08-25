@@ -1,0 +1,22 @@
+# Cisco Unified Communications Manager (CUCM) SIP Trunk & Dial Plan Mapping
+# Target Exam: 350-801 CLCOR (Cisco Collaboration Core)
+
+collaboration_cluster:
+  cluster_name: "CUCM-PUB-01"
+  domain: "enterprise.lab"
+
+sip_trunks:
+  - name: "SIP_TRUNK_CUBE_GW"
+    destination_ip: "172.16.50.10"
+    port: 5060
+    transport_protocol: "TLS"
+    sip_profile: "Standard SIP Profile for Cisco Unified Border Element"
+    device_pool: "DP_HQ_EAST"
+    calling_search_space: "CSS_NATIONAL_OUTBOUND"
+
+dial_plan_routes:
+  route_patterns:
+    - pattern: "9.1[2-9]XXXXXXXXX"
+      description: "US PSTN 10-Digit National Dialing"
+      partition: "PT_PSTN_OUTBOUND"
+      gateway_or_trunk: "SIP_TRUNK_CUBE_GW"
